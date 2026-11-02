@@ -1,0 +1,63 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | SafePulse</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#071923,#104451,#087e8b);color:white}
+.card{width:100%;max-width:430px;padding:35px;background:#0b2632;border:1px solid #28515d;border-radius:20px;box-shadow:0 20px 55px #0005}
+.logo{text-align:center;font-size:30px;font-weight:bold;margin-bottom:10px}
+.logo span{color:#35e0c1}
+.subtitle{text-align:center;color:#b7cbd2;line-height:1.7;font-size:14px;margin-bottom:28px}
+h2{text-align:center;font-size:25px;margin-bottom:10px}
+label{display:block;font-size:14px;margin:17px 0 8px}
+input{width:100%;padding:13px;border-radius:9px;border:1px solid #365761;background:#102f3b;color:white;outline:none}
+input:focus{border-color:#35e0c1}
+button{width:100%;margin-top:24px;padding:14px;border:0;border-radius:9px;background:#35e0c1;color:#06232c;font-size:16px;font-weight:bold;cursor:pointer}
+button:hover{background:#70f3da}
+p.link{text-align:center;margin-top:22px;color:#b7cbd2;font-size:14px;line-height:1.8}
+a{color:#35e0c1;text-decoration:none;font-weight:bold}
+a:hover{text-decoration:underline}
+.message{padding:11px;margin-bottom:12px;border-radius:8px;background:#47252c;color:#ffc4c4;font-size:13px}
+.back{text-align:center;margin-top:20px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">Safe<span>Pulse</span></div>
+    <p class="subtitle">Your safety, our priority.</p>
+    <h2>Welcome Back!</h2>
+    <p class="subtitle">Login to continue to your account.</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="Enter your username" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p class="link">
+        Don't have an account?<br>
+        <a href="{% url 'register' %}">Create an account</a>
+    </p>
+
+    <div class="back">
+        <a href="{% url 'welcome' %}">&larr; Back to Welcome Page</a>
+    </div>
+</div>
+</body>
+</html>
+```

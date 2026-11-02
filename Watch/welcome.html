@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePulse | Smart Safety Watch</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #07151c;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 22px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(7, 21, 28, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #20d6bd, #078c91);
+            color: #061c22;
+            font-size: 23px;
+        }
+
+        .logo span {
+            color: #28d8c0;
+        }
+
+        .nav-login {
+            padding: 11px 24px;
+            border: 1px solid #28d8c0;
+            border-radius: 10px;
+            color: #28d8c0;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-login:hover {
+            background: #28d8c0;
+            color: #07151c;
+        }
+
+        .hero {
+            max-width: 1250px;
+            margin: auto;
+            padding: 75px 8% 65px;
+            min-height: 590px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 9px 15px;
+            border-radius: 30px;
+            border: 1px solid rgba(40, 216, 192, 0.3);
+            background: rgba(40, 216, 192, 0.08);
+            color: #55e8d3;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(43px, 5vw, 68px);
+            line-height: 1.12;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            color: #28d8c0;
+        }
+
+        .hero-description {
+            color: #a9bac3;
+            font-size: 17px;
+            line-height: 1.9;
+            max-width: 580px;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            border-radius: 11px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #28d8c0;
+            color: #061c22;
+            box-shadow: 0 8px 30px rgba(40, 216, 192, 0.15);
+        }
+
+        .btn-primary:hover {
+            background: #65f2df;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            border: 1px solid #334a54;
+            color: #dce8ed;
+        }
+
+        .btn-secondary:hover {
+            border-color: #28d8c0;
+            color: #28d8c0;
+        }
+
+        .visual {
+            position: relative;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glow {
+            position: absolute;
+            width: 310px;
+            height: 310px;
+            background: #13bfae;
+            filter: blur(100px);
+            opacity: 0.17;
+            border-radius: 50%;
+        }
+
+        .watch-card {
+            position: relative;
+            width: 280px;
+            padding: 25px;
+            border-radius: 35px;
+            background: linear-gradient(145deg, #152b35, #0c1c24);
+            border: 1px solid rgba(91, 231, 213, 0.25);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transform: rotate(-4deg);
+        }
+
+        .watch {
+            width: 140px;
+            height: 180px;
+            margin: 5px auto 22px;
+            border-radius: 37px;
+            background: linear-gradient(145deg, #203a44, #08161c);
+            border: 8px solid #354e58;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5),
+                        0 0 25px rgba(40, 216, 192, 0.08);
+        }
+
+        .watch-screen {
+            width: 100px;
+            height: 135px;
+            border-radius: 25px;
+            background: linear-gradient(160deg, #0b222a, #102e36);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .heart {
+            font-size: 39px;
+            color: #ff6685;
+        }
+
+        .watch-screen strong {
+            font-size: 22px;
+            color: #ffffff;
+        }
+
+        .watch-screen small {
+            color: #28d8c0;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .watch-caption {
+            color: #dbe8ed;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .watch-subtitle {
+            margin-top: 8px;
+            color: #91a8b2;
+            font-size: 12px;
+        }
+
+        .floating-card {
+            position: absolute;
+            padding: 13px 17px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 13px;
+            background: #122630;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            font-size: 13px;
+        }
+
+        .floating-card strong {
+            display: block;
+            margin-top: 5px;
+            color: #28d8c0;
+        }
+
+        .float-top {
+            top: 45px;
+            right: -8px;
+        }
+
+        .float-bottom {
+            bottom: 43px;
+            left: -15px;
+        }
+
+        .features {
+            padding: 60px 8% 75px;
+            background: #0b1d25;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            margin-bottom: 13px;
+        }
+
+        .section-heading h2 span {
+            color: #28d8c0;
+        }
+
+        .section-heading p {
+            color: #91a8b2;
+            line-height: 1.7;
+        }
+
+        .feature-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature-card {
+            padding: 27px;
+            background: #102630;
+            border: 1px solid #1d3943;
+            border-radius: 19px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #28d8c0;
+        }
+
+        .feature-icon {
+            width: 53px;
+            height: 53px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background: rgba(40, 216, 192, 0.12);
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #9bb0b9;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .cta {
+            max-width: 1100px;
+            margin: 65px auto 0;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid rgba(40, 216, 192, 0.2);
+            border-radius: 20px;
+            background: linear-gradient(120deg, #102b34, #10232c);
+        }
+
+        .cta h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            color: #9bb0b9;
+            line-height: 1.8;
+            margin-bottom: 22px;
+        }
+
+        footer {
+            padding: 23px 8%;
+            text-align: center;
+            color: #718993;
+            font-size: 13px;
+            background: #07151c;
+        }
+
+        @media (max-width: 850px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 55px;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .visual {
+                min-height: 350px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .float-top {
+                right: 0;
+            }
+
+            .float-bottom {
+                left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 17px 5%;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .hero {
+                padding: 48px 6%;
+            }
+
+            h1 {
+                font-size: 43px;
+            }
+
+            .watch-card {
+                width: 240px;
+            }
+
+            .float-top {
+                right: -5px;
+            }
+
+            .float-bottom {
+                left: -5px;
+            }
+
+            .features {
+                padding: 45px 6%;
+            }
+
+            .cta {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="{% url 'welcome' %}" class="logo">
+            <div class="logo-icon">♡</div>
+            <div>Safe<span>Pulse</span></div>
+        </a>
+
+        <a href="{% url 'login' %}" class="nav-login">Login ↗</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="tag">✦ SMART SAFETY WATCH PROJECT</div>
+
+                <h1>
+                    Your Safety.<br>
+                    Your <span>Priority.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Welcome to SafePulse — a smart safety watch project
+                    designed to support personal safety through emergency
+                    SOS features, location awareness, and trusted contacts.
+                    Stay prepared and keep your safety information accessible.
+                </p>
+
+                <div class="buttons">
+                    <a href="{% url 'login' %}" class="btn btn-primary">
+                        Continue <span>→</span>
+                    </a>
+
+                    <a href="#features" class="btn btn-secondary">
+                        Explore Features ↓
+                    </a>
+                </div>
+            </div>
+
+            <div class="visual">
+                <div class="glow"></div>
+
+                <div class="watch-card">
+                    <div class="watch">
+                        <div class="watch-screen">
+                            <div class="heart">♥</div>
+                            <strong>SAFE</strong>
+                            <small>SAFEPULSE</small>
+                        </div>
+                    </div>
+
+                    <div class="watch-caption">Smart Safety Watch</div>
+                    <div class="watch-subtitle">Safety-focused project concept</div>
+                </div>
+
+                <div class="floating-card float-top">
+                    📍 Location Awareness
+                    <strong>GPS Concept</strong>
+                </div>
+
+                <div class="floating-card float-bottom">
+                    🛡️ Personal Protection
+                    <strong>Emergency SOS Concept</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="section-heading">
+                <h2>Designed With <span>Safety in Mind</span></h2>
+                <p>Explore the main features planned for the SafePulse project.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">🆘</div>
+                    <h3>Emergency SOS</h3>
+                    <p>
+                        A planned SOS feature intended to help a user
+                        initiate an emergency alert through a deliberate
+                        activation action.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>GPS Location</h3>
+                    <p>
+                        View location information where supported, helping
+                        users understand how location awareness can support
+                        a personal safety system.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Trusted Contacts</h3>
+                    <p>
+                        Organize important trusted contact details in one
+                        place for the safety system prototype.
+                    </p>
+                </article>
+            </div>
+
+            <div class="cta">
+                <h2>Ready to Explore SafePulse?</h2>
+                <p>
+                    Continue to your account to explore the SafePulse
+                    dashboard prototype.
+                </p>
+
+                <a href="{% url 'login' %}" class="btn btn-primary">
+                    Get Started →
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 SafePulse Smart Safety Watch Project. Academic prototype.
+    </footer>
+
+</body>
+</html>
